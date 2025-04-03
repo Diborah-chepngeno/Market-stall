@@ -1,0 +1,67 @@
+// This is your Prisma schema file
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model: Represents admins and vendors
+model User {
+  id        Int      @id @default(autoincrement()) 
+  username  String   @unique
+  email     String   @unique
+  password  String
+  phone     String
+  address   String
+  role      String   // "Admin" or "Vendor"
+  stalls    Stall[]  // Relation to stalls owned/rented by vendors
+  bookings  Booking[] // Relation to stall bookings for vendors
+}
+
+// Product model: Represents fruits sold at stalls
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  price       Int
+  quantity    Int
+  image       String?  // Optional image of the fruit
+  stallId     Int
+  categoryId  Int
+  stall       Stall    @relation(fields: [stallId], references: [id]) // Relation to Stall
+  category    Category @relation(fields: [categoryId], references: [id]) // Relation to Category
+}
+
+// Category model: Classifies the fruits into different categories
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String
+  products Product[] // Relation to Products in this category
+}
+
+// Stall model: Represents the stalls at the market
+model Stall {
+  id         Int       @id @default(autoincrement()) 
+  number     String    @unique // Unique stall number
+  location   String    // Location of the stall
+  size       String    // Size of the stall (Small, Medium, Large)
+  isOccupied Boolean   @default(false) // If the stall is occupied
+  vendorId   Int?      // Nullable vendor ID, to handle unoccupied stalls
+  vendor     User?     @relation(fields: [vendorId], references: [id]) // Relation to User (Vendor)
+  products   Product[] // Relation to Products being sold at the stall
+  bookings   Booking[] // Relation to bookings of the stall
+}
+
+
+model Booking {
+  id         Int      @id @default(autoincrement())
+  vendorId   Int
+  stallId    Int
+  startDate  DateTime
+  endDate    DateTime? // Nullable end date in case it's ongoing
+  status     String   // "Active", "Pending", "Expired"
+  vendor     User     @relation(fields: [vendorId], references: [id]) // Relation to User 
+  stall      Stall    @relation(fields: [stallId], references:[id])
+}
