@@ -1,7 +1,7 @@
 import axios, { CanceledError } from "axios";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:7000/api/v1",
+  baseURL: "http://localhost:4300/api/v1",
   headers: {
     Authorization: `bearer ${localStorage.getItem("token")}`,
   },
