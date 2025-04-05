@@ -1,6 +1,5 @@
-import { ChangeEvent } from "react";
 import useCategories, { Category } from "../hooks/useCategory";
-
+import { Dropdown } from "react-bootstrap";
 interface Props {
   onSelectCategory: (category: Category | null) => void;
 }
@@ -8,25 +7,36 @@ interface Props {
 const CategoriesList = ({ onSelectCategory }: Props) => {
   const { data } = useCategories();
 
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const selectedName = event.target.value;
+  // const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  //   const selectedName = event.target.value;
 
-    const selectedCategory = data.find(
-      (category) => category.name === selectedName
-    );
-    console.log(selectedCategory);
-    onSelectCategory(selectedCategory || null);
-  };
+  //   const selectedCategory = data.find(
+  //     (category) => category.name === selectedName
+  //   );
+  //   console.log(selectedCategory);
+  //   onSelectCategory(selectedCategory || null);
+  // };
 
   return (
-    <select className="form-select" onChange={handleChange}>
-      <option value="">All categories</option>
-      {data.map((category) => (
-        <option key={category.id} value={category.name}>
-          {category.name}
-        </option>
-      ))}
-    </select>
+    <Dropdown>
+      <Dropdown.Toggle variant="primary" id="dropdown-basic">
+        Select Category
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={() => onSelectCategory(null)}>
+          All Categories
+        </Dropdown.Item>
+        {data.map((category) => (
+          <Dropdown.Item
+            key={category.id}
+            onClick={() => onSelectCategory(category)}
+          >
+            {category.name}
+          </Dropdown.Item>
+        ))}
+      </Dropdown.Menu>
+    </Dropdown>
   );
 };
 
