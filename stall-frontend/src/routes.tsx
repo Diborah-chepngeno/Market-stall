@@ -9,6 +9,7 @@ import Logout from "./pages/Auths/Logout";
 import DashBoard from "./AdminPannel/DashBoard/DashBoard";
 import CategoryPage from "./AdminPannel/categories/CategoryPage";
 import User from "./AdminPannel/Components/User";
+import StallComponent from "./AdminPannel/Components/StallComponent";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <ProductGrid /> },
           { path: "categories", element: <CategoryPage /> },
+          { path: "stalls", element: <StallComponent /> },
           { path: "users", element: <User /> },
         ],
       },

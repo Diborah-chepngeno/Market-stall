@@ -10,6 +10,9 @@ const DashBoard = () => {
         <div className="col">
           <NavLink to="/admin/categories">categories</NavLink>
         </div>
+        <div className="col">
+          <NavLink to="/admin/stalls">Stalls</NavLink>
+        </div>
 
         <div className="col">
           <NavLink to="/admin/users">Users</NavLink>

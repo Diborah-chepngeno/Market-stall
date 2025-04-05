@@ -72,6 +72,7 @@ const ProductsGrid = () => {
         <div className="d-flex justify-content-between ">
           <div className="mb-3">
             <CategoriesList
+              selectedCategory={selectedCategory}
               onSelectCategory={(category) => setSelectedCategory(category)}
             />
           </div>

@@ -5,7 +5,12 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const role = localStorage.getItem("role");
   const Token = localStorage.getItem("token");
-
+  console.log(role);
+  const getRole = () => {
+    if (role === "Admin") return "All Bookings";
+    return "My Bookings";
+  };
+  console.log(getRole());
   return (
     <HStack
       padding="10px"
@@ -27,7 +32,7 @@ const Navbar = () => {
         <SearchInput />
       </Box>
 
-      <NavLink to="/cart">My Bookings</NavLink>
+      <NavLink to="/cart">{getRole()}</NavLink>
 
       {role == "Admin" && <NavLink to="/admin">Admin</NavLink>}
       {Token ? (

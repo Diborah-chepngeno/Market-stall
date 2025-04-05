@@ -25,7 +25,6 @@ const ProductsCard = ({ product }: Prop) => {
     const currentDate = new Date();
     const endDate = new Date();
     endDate.setDate(endDate.getDate() + 30);
-    console.log(productStall?.isOccupied);
 
     setBooking({
       ...booking,
@@ -35,8 +34,6 @@ const ProductsCard = ({ product }: Prop) => {
       endDate: endDate.toISOString(),
       status: productStall?.isOccupied ? "active" : "Inactive",
     });
-
-    console.log(booking);
 
     if (localStorage.getItem("userId"))
       return bookingService
