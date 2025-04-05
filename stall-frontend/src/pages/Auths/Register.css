@@ -1,0 +1,27 @@
+.register-form-container {
+    display: flex;
+    padding-top: 30px;
+    justify-content: center;
+    height: 100vh;
+    /* background-color: black; */
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #b0b0b8;
+    height: 600px;
+    width: 400px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.registe-form h2 {
+    margin-bottom: 20px;
+}
+
+.register-form .input-field {
+    margin-bottom: 16px;
+    width: 100%;
+}

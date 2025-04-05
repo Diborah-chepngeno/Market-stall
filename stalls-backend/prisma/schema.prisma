@@ -17,7 +17,6 @@ model User {
   phone     String
   address   String
   role      String   // "Admin" or "Vendor"
-  stalls    Stall[]  // Relation to stalls owned/rented by vendors
   bookings  Booking[] // Relation to stall bookings for vendors
 }
 
@@ -48,8 +47,6 @@ model Stall {
   location   String    // Location of the stall
   size       String    // Size of the stall (Small, Medium, Large)
   isOccupied Boolean   @default(false) // If the stall is occupied
-  vendorId   Int?      // Nullable vendor ID, to handle unoccupied stalls
-  vendor     User?     @relation(fields: [vendorId], references: [id]) // Relation to User (Vendor)
   products   Product[] // Relation to Products being sold at the stall
   bookings   Booking[] // Relation to bookings of the stall
 }

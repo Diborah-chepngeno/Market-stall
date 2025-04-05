@@ -12,6 +12,7 @@ categoryRouter
 
 categoryRouter
   .route("/categories/:id")
+  .put(authMiddleware, categoryController.updateCategory)
   .delete(cateoryMiddleware, authMiddleware, categoryController.deleteCategory);
 
 export default categoryRouter;

@@ -7,11 +7,11 @@ import { authMiddleware } from "../middlewares/authmiddleware.mjs";
 const userRouter = Router();
 userRouter
   .route("/auth/users")
-  .get(authMiddleware, userControllers.getAllUsers)
+  .get(userControllers.getAllUsers)
   .post(checkSchema(userSchema), userControllers.createUser);
 
 userRouter.post("/auth/login", userControllers.loginUser);
 
-userRouter.route("/users/:id");
+// userRouter.route("/users/:id");
 
 export default userRouter;

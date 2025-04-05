@@ -24,6 +24,24 @@ export const getAllCategories = async (req, res) => {
   }
 };
 
+export const updateCategory = async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+
+  try {
+    const Category = await prisma.category.update({
+      where: { id: parseInt(id) },
+      data: {
+        name,
+      },
+    });
+    res.status(200).json(Category);
+  } catch (error) {
+    console.error("Error updating Category:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 export const deleteCategory = async (req, res) => {
   const { id } = req.params;
 

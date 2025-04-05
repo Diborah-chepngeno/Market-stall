@@ -44,18 +44,26 @@ export const getAllProducts = async (req, res) => {
 
 export const updateProducts = async (req, res) => {
   const { id } = req.params;
-  const { gender, categoryId, price, name, image, description } = req.body;
+  const { name, price, quantity, image, stallId, categoryId } = req.body;
 
   try {
+    const existingProduct = await prisma.product.findUnique({
+      where: { id: parseInt(id) },
+    });
+
+    if (!existingProduct) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
     const product = await prisma.product.update({
       where: { id: parseInt(id) },
       data: {
-        categoryId: parseInt(categoryId),
+        name: name,
         price: parseInt(price),
-        gender,
-        name,
-        image,
-        description,
+        image: image,
+        quantity: parseInt(quantity),
+        categoryId: parseInt(categoryId),
+        stallId: parseInt(stallId),
       },
     });
     res.status(200).json(product);
