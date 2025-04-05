@@ -13,6 +13,7 @@ interface Props {
 const ProductList = ({ products, onDelete, onSave }: Props) => {
   const { data } = useCategories();
   const { data: stalls } = useStall();
+  console.log(products);
   const [currentProduct, setCurrentProduct] = useState<Product>({
     id: 0,
     price: 0,

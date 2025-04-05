@@ -46,7 +46,7 @@ const AddStallComponent = ({ onClose, onSave }: Props) => {
     <div className="popup-overlay ">
       <div className="popup-content">
         <form onSubmit={handleSubmit(handleSave)}>
-          <h2>Create products</h2>
+          <h2>Create Stall</h2>
 
           <div className="mb-3">
             <label htmlFor="number" className="from-label">

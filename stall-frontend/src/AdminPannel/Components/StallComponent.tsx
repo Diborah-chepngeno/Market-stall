@@ -44,7 +44,7 @@ const StallComponent = () => {
             className="btn btn-primary"
             onClick={() => setIsAddPopupOpen(true)}
           >
-            Add Product
+            Add Stall
           </button>
         </div>
       </div>
