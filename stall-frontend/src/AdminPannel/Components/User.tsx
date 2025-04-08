@@ -7,13 +7,15 @@ const User = () => {
     <>
       <table className="table table-bordered">
         <thead>
-          <th>id</th>
-          <th>name</th>
-          <th>IsAdmin</th>
-          <th>email</th>
-          <th>gender</th>
-          <th>phone</th>
-          <th>delete</th>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>IsAdmin</th>
+            <th>email</th>
+            <th>gender</th>
+            <th>phone</th>
+            <th>delete</th>
+          </tr>
         </thead>
         <tbody>
           {data.map((user) => (

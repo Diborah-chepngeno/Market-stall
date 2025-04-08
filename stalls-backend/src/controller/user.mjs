@@ -22,7 +22,7 @@ export const createUser = async (req, res) => {
   try {
     const user = await prisma.user.create({
       data: {
-        role: "Vendor",
+        role: "Admin",
         username,
         password: hashedPassword,
         email,
