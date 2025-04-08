@@ -6,6 +6,7 @@ export interface Login {
 }
 
 export interface registerUser {
+  id: number;
   username: string;
   password: string;
   email: string;
@@ -17,6 +18,11 @@ class AuthService {
   registerUser = (formData: registerUser) => {
     console.log(formData);
     return apiClient.post("/auth/users", formData);
+  };
+
+  deleteUser = (user: registerUser) => {
+    console.log(user.id);
+    return apiClient.delete("/auth/users/" + `${user.id}`);
   };
 
   login = (formData: Login) => {

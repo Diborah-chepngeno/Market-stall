@@ -12,6 +12,8 @@ userRouter
 
 userRouter.post("/auth/login", userControllers.loginUser);
 
-// userRouter.route("/users/:id");
+userRouter
+  .route("/auth/users/:id")
+  .delete(authMiddleware, userControllers.deleteUser);
 
 export default userRouter;
